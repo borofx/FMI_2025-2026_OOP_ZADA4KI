@@ -30,6 +30,7 @@ public:
         newNode->next = head;
         head = newNode;
     }
+    
     void pop_front(){
         if(head == nullptr){
             return;
@@ -52,8 +53,20 @@ public:
         private:
             Node<T>* current;
         public:
-
-    }
+            Iterator(Node<T>* startNode) : current(startNode) {}
+            T& operator*(){
+                return current->data;
+            }
+            Iterator& operator++(){
+                current = current->next;
+                return *this;
+            }
+            bool operator!=(const Iterator& other) const{
+                return current != other.current;
+            }            
+    };
+            Iterator begin(){ return Iterator(head);}
+            Iterator end() {return Iterator(nullptr);}
 };
 int main(){
     LinkedList<int> myList;
@@ -61,6 +74,11 @@ int main(){
     myList.push_front(20);
     myList.pop_front();
     myList.push_front(10);
+    myList.push_front(50);
+
+    for(int val : myList){
+        std::cout << val << ", ";
+    }
 
     myList.print();
     return 0;
