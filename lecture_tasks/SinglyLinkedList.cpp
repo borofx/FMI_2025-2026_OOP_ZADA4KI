@@ -25,19 +25,35 @@ public:
         }
     }
 
-    void push_front(T val){
+    LinkedList& push_front(T val){
         Node<T>* newNode = new Node<T>(val);
         newNode->next = head;
         head = newNode;
+        return *this;
+    }
+
+    LinkedList& push(T val){
+        Node<T>* newNode = new Node<T>(val);
+        if(head == nullptr){
+            head = newNode;
+        } else {
+            Node<T>* current = head;
+            while(current->next != nullptr){
+                current = current->next;
+            }
+            current->next = newNode;
+        }
+        return *this;
     }
     
-    void pop_front(){
+    LinkedList& pop_front(){
         if(head == nullptr){
-            return;
+            return *this;
         }
         Node<T>* temp = head;
         head = head->next;
         delete temp;
+        return *this;
     }
 
     void print() const{
@@ -71,10 +87,7 @@ public:
 int main(){
     LinkedList<int> myList;
     myList.push_front(30);
-    myList.push_front(20);
-    myList.pop_front();
-    myList.push_front(10);
-    myList.push_front(50);
+    myList.push_front(20).push_front(30).pop_front().push_front(40);
 
     for(int val : myList){
         std::cout << val << ", ";
