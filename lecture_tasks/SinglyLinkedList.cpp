@@ -88,7 +88,7 @@ int main(){
     LinkedList<int> myList;
     myList.push_front(30);
     myList.push_front(20).push_front(30).pop_front().push_front(40);
-
+    
     for(int val : myList){
         std::cout << val << ", ";
     }
