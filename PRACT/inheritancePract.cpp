@@ -16,10 +16,10 @@ class Base{
 class Derived : public Base{
     public: 
         Derived(char* message) : Base(message){
-            std::cout << "ballz creator" << std::endl;
+            std::cout << "derived created" << std::endl;
         }
         ~Derived(){
-            std::cout << "ballz destructor" << std::endl;
+            std::cout << "derived destroyed" << std::endl;
         }
 };
 
